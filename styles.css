@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+.game-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 8px;
+}
+
+.game-board {
+  width: 300px;
+  height: 600px;
+  background-color: #000;
+  border: 2px solid #444;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+}
+
+.cell {
+  border: 1px solid #333;
+  background-color: #000;
+}
+
+.cell.filled {
+  border: 1px solid #666;
+}
+
+.cell.filled.I {
+  background-color: #00f0f0;
+}
+.cell.filled.O {
+  background-color: #f0f000;
+}
+.cell.filled.T {
+  background-color: #a000f0;
+}
+.cell.filled.L {
+  background-color: #f0a000;
+}
+.cell.filled.J {
+  background-color: #0000f0;
+}
+.cell.filled.S {
+  background-color: #00f000;
+}
+.cell.filled.Z {
+  background-color: #f00000;
+}
+
+#next-piece-preview {
+  width: 120px;
+  height: 120px;
+  background-color: #000;
+  border: 2px solid #444;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.score,
+.level {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  margin-bottom: 10px;
+  color: #fff;
+}

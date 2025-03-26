@@ -73,6 +73,33 @@ body {
   background-color: #f00000;
 }
 
+.cell.ghost {
+  opacity: 0.3;
+  border: 1px dashed #666;
+}
+
+.cell.ghost.I {
+  background-color: #00f0f0;
+}
+.cell.ghost.O {
+  background-color: #f0f000;
+}
+.cell.ghost.T {
+  background-color: #a000f0;
+}
+.cell.ghost.L {
+  background-color: #f0a000;
+}
+.cell.ghost.J {
+  background-color: #0000f0;
+}
+.cell.ghost.S {
+  background-color: #00f000;
+}
+.cell.ghost.Z {
+  background-color: #f00000;
+}
+
 #next-piece-preview {
   width: 120px;
   height: 120px;

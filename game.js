@@ -304,7 +304,17 @@ class Tetris {
     // Clear the board
     const cells = document.querySelectorAll(".cell");
     cells.forEach((cell) => {
-      cell.classList.remove("filled", "I", "O", "T", "L", "J", "S", "Z");
+      cell.classList.remove(
+        "filled",
+        "I",
+        "O",
+        "T",
+        "L",
+        "J",
+        "S",
+        "Z",
+        "ghost"
+      );
     });
 
     // Draw locked pieces
@@ -312,6 +322,25 @@ class Tetris {
       for (let j = 0; j < this.board[i].length; j++) {
         if (this.board[i][j]) {
           this.updateCell(i, j, this.board[i][j]);
+        }
+      }
+    }
+
+    // Draw ghost piece
+    const ghostPiece = this.getGhostPosition();
+    if (ghostPiece) {
+      for (let i = 0; i < ghostPiece.shape.length; i++) {
+        for (let j = 0; j < ghostPiece.shape[i].length; j++) {
+          if (ghostPiece.shape[i][j]) {
+            const y = ghostPiece.y + i;
+            const x = ghostPiece.x + j;
+            if (y >= 0) {
+              const cell = document.querySelector(
+                `[data-row="${y}"][data-col="${x}"]`
+              );
+              cell.classList.add("ghost", ghostPiece.color);
+            }
+          }
         }
       }
     }
@@ -367,6 +396,22 @@ class Tetris {
     cancelAnimationFrame(this.gameLoop);
     this.gameLoop = null;
     document.getElementById("play-again-btn").style.display = "block";
+  }
+
+  getGhostPosition() {
+    if (!this.currentPiece) return null;
+
+    let ghostY = this.currentPiece.y;
+    while (!this.checkCollision(this.currentPiece.x, ghostY + 1)) {
+      ghostY++;
+    }
+
+    return {
+      x: this.currentPiece.x,
+      y: ghostY,
+      shape: this.currentPiece.shape,
+      color: this.currentPiece.color,
+    };
   }
 }
 

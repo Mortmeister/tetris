@@ -1,5 +1,7 @@
 # Tetris Game
 
+Please note that this is a test project using Cursor AI. 
+
 A classic Tetris game implemented in HTML, CSS, and JavaScript. Play the game in your web browser!
 
 ## Features

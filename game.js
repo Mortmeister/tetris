@@ -88,6 +88,9 @@ class Tetris {
     document
       .getElementById("pause-btn")
       .addEventListener("click", () => this.togglePause());
+    document
+      .getElementById("play-again-btn")
+      .addEventListener("click", () => this.startGame());
   }
 
   startGame() {
@@ -98,6 +101,7 @@ class Tetris {
     this.nextPiece = pieces[Math.floor(Math.random() * pieces.length)];
     this.spawnPiece();
     this.gameLoop = requestAnimationFrame(this.update.bind(this));
+    document.getElementById("play-again-btn").style.display = "none";
   }
 
   reset() {
@@ -140,10 +144,7 @@ class Tetris {
       this.currentPiece &&
       this.checkCollision(this.currentPiece.x, this.currentPiece.y)
     ) {
-      this.gameOver = true;
-      alert("Game Over! Score: " + this.score);
-      cancelAnimationFrame(this.gameLoop);
-      this.gameLoop = null;
+      this.gameOver();
     }
   }
 
@@ -181,6 +182,9 @@ class Tetris {
         break;
       case 38: // Up
         this.rotatePiece();
+        break;
+      case 32: // Space
+        this.hardDrop();
         break;
     }
   }
@@ -347,6 +351,22 @@ class Tetris {
   updateLevel(level) {
     this.level = level;
     document.getElementById("level").textContent = level;
+  }
+
+  hardDrop() {
+    if (!this.currentPiece) return;
+
+    while (this.movePiece(0, 1)) {
+      // Keep moving down until collision
+    }
+  }
+
+  gameOver() {
+    this.gameOver = true;
+    alert("Game Over! Score: " + this.score);
+    cancelAnimationFrame(this.gameLoop);
+    this.gameLoop = null;
+    document.getElementById("play-again-btn").style.display = "block";
   }
 }
 
